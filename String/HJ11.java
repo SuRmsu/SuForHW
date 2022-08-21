@@ -1,18 +1,17 @@
+package String;
+
+
+import MyUtils.AllSolution;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
+public class HJ11 {
     /**
      * 简单的转化为StringBuffer，然后调用转换函数reverse()
-     * @param args
      * @throws Exception
      */
-    public static void main(String[] args) throws Exception {
+    public void mySolution() throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
         /*
@@ -25,6 +24,16 @@ public class TempTestClass {
         strb.reverse();
         System.out.println(strb.toString());
     }
+/*
+    int a = 0;
+    int num = Integer.parseInt(str);
+        do{
+        a = num % 10; 此处会记录多的0
+        num = num / 10; 此处会记录每个位
+        System.out.print(a);
+    }while(num > 0);
+*/
+
+
 
 }
-

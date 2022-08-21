@@ -30,4 +30,7 @@ int的范围是2的31次方-1,即2147483647
 [BitSet类](https://www.runoob.com/java/java-bitset-class.html)
 [ArrayList类](https://www.runoob.com/java/java-arraylist.html)
 
-
+### HJ11 数字颠倒
+[StringBuffer和StringBuilder类](https://www.runoob.com/java/java-stringbuffer.html) 前者线程安全
+方法一：传统的对每个字符串进行字符反转
+方法二：用%10获得多余的0，用/10去除最后一位
