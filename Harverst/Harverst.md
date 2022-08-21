@@ -22,5 +22,12 @@ int的范围是2的31次方-1,即2147483647
 **48到57**是数字**0到9**
 **65到90**是大写字母**A到Z**
 **97到122**是小写字母**a到z**
+[ascii](http://c.biancheng.net/c/ascii/)
+
+### HJ10 字符个数统计
+去重统计，可以使用一维位图，使用**一位**来进行记录，也可以存入hash中，利用hash的特性进行统计
+[HashSet类](https://www.runoob.com/manual/jdk11api/java.base/java/util/HashSet.html)
+[BitSet类](https://www.runoob.com/java/java-bitset-class.html)
+[ArrayList类](https://www.runoob.com/java/java-arraylist.html)
 
 
