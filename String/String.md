@@ -10,7 +10,7 @@ String是引用类型，不可变，其内部是char[]数组
 **lastIndexOf**方法：
 **startsWith**方法：
 **endsWith**方法：
-**substring**方法：截取子串
+**substring**方法：截取子串 important
 > (2),截取第三位及以后
 > (2,4)，截取第三位到第五位
 
