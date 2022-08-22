@@ -15,19 +15,10 @@ public class TempTestClass {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int num = Integer.parseInt(br.readLine().trim());
-        String[] output = new String[num];
-        for (int i = 0; i < num; i++) {
-            output[i] = br.readLine();
-        }
-        Arrays.sort(output);//nnd，直接Arrays.sort就完事了
-        for (int i = 0; i < num; i++) {
-            System.out.println(output[i]);
-        }
-
-        //Arrays.stream(output).sorted().forEach(System.out::println);
-
+        String re2 = "a\\&c"; // 对应的正则是a\&c
+        System.out.println("a&c".matches(re2));
+        System.out.println("a-c".matches(re2));
+        System.out.println("a&c".matches(re2));
     }
 
 }

@@ -7,6 +7,7 @@ length()方法是String的一个静态方法
 **Scanner类**用于扫描命令行输入，包含hasNext和hasNextLine两种判断方式
 > a.next只会保存空格之前的字符串
 > a.nextLine会保存整行的内容
+split返回的是字符串数组
 
 ### HJ2 计算某字符出现的次数
 BufferedReader也有readline和read方法
@@ -43,3 +44,18 @@ int的范围是2的31次方-1,即2147483647
 使用**PriorityQueue**类，会按照字符串顺序排优先级，并按优先级最高依次输出[优先队列](https://www.cainiaojc.com/java/java-priorityqueue.html)
 自己实现自己写一个冒泡排序吗？
 
+### HJ17 坐标移动
+暴力算法，用split分割字符串，暴力字符串匹配
+使用正则表达式进行匹配，例如[WASD][0-9]{1,2} 
+[正则表达式](https://www.liaoxuefeng.com/wiki/1252599548343744/1304066080636961)
+> . 可以匹配任意字符
+> \d 匹配整数字符 \D匹配非数字
+> \w 字符、数字、下划线 \W
+> \s 空格和tab \S
+> *	任意个数字符	空，A，AA，AAA，……
+> +	至少1个字符	A，AA，AAA，……
+> ?	0个或1个字符	空，A
+> {3}	指定个数字符	AAA
+> {2,3}	指定范围个数字符	AA，AAA
+> {2,}	至少n个字符	AA，AAA，
+> {0,3}	最多n个字符	空，A，AA，AAA
