@@ -1,20 +1,12 @@
+package String;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Scanner;
-import java.util.stream.Stream;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
-    /**
-     * 简单的转化为StringBuffer，然后调用转换函数reverse()
-     *
-     * @param args
-     * @throws Exception
-     */
-    public static void main(String[] args) throws Exception {
+public class HJ14 {
+    public void mySolution() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine().trim());
         String[] output = new String[num];
@@ -27,8 +19,5 @@ public class TempTestClass {
         }
 
         //Arrays.stream(output).sorted().forEach(System.out::println);
-
     }
-
 }
-

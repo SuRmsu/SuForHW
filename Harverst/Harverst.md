@@ -34,3 +34,12 @@ int的范围是2的31次方-1,即2147483647
 [StringBuffer和StringBuilder类](https://www.runoob.com/java/java-stringbuffer.html) 前者线程安全
 方法一：传统的对每个字符串进行字符反转
 方法二：用%10获得多余的0，用/10去除最后一位
+
+### HJ12 字符串反转
+同HJ11的方法一
+
+### HJ14 字符串排序
+直接调用Arrays.sort()函数
+使用**PriorityQueue**类，会按照字符串顺序排优先级，并按优先级最高依次输出[优先队列](https://www.cainiaojc.com/java/java-priorityqueue.html)
+自己实现自己写一个冒泡排序吗？
+
