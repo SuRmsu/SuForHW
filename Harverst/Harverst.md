@@ -68,4 +68,7 @@ LinkedHashMap会以链表方式保存键值对，适合用于循环输入 [Linke
 判断字符串**是否为空**应用：tempInput != null && !tempInput.equals("")
 判断输入是否**停止**了：(tempInput = bf.readLine()) != null && !tempInput.equals("")
 
-
+### HJ20 密码验证合格程序
+用String记录总是会申请新地址和抛弃旧地址，会导致浪费
+比较可以用正则匹配，也可以直接转化成char进行大于小于的对比，目前哪个更好还未知
+正则匹配需要使用Pattern类，还没能完全弄懂正则匹配
