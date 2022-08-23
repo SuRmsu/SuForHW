@@ -53,9 +53,19 @@ int的范围是2的31次方-1,即2147483647
 > \w 字符、数字、下划线 \W
 > \s 空格和tab \S
 > *	任意个数字符	空，A，AA，AAA，……
-> +	至少1个字符	A，AA，AAA，……
+> + 至少1个字符	A，AA，AAA，……
 > ?	0个或1个字符	空，A
 > {3}	指定个数字符	AAA
 > {2,3}	指定范围个数字符	AA，AAA
 > {2,}	至少n个字符	AA，AAA，
 > {0,3}	最多n个字符	空，A，AA，AAA
+
+### HJ19 简单错误记录
+困难题目，但其实是比较简单的
+HashMap是保存键值对的，但是不会保存顺序[HashMap](https://www.runoob.com/java/java-hashmap.html)
+LinkedHashMap会以链表方式保存键值对，适合用于循环输入 [LinkedHashMap](https://www.cainiaojc.com/java/java-linkedhashmap.html)
+获取字符串**切分后的最后一个**，用substring和lastIndexOf配合，或者使用正则匹配 \\分隔符
+判断字符串**是否为空**应用：tempInput != null && !tempInput.equals("")
+判断输入是否**停止**了：(tempInput = bf.readLine()) != null && !tempInput.equals("")
+
+

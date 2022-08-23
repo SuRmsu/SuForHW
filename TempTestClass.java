@@ -1,24 +1,43 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static java.lang.Math.pow;
 
 public class TempTestClass {
-    /**
-     * 简单的转化为StringBuffer，然后调用转换函数reverse()
-     *
-     * @param args
-     * @throws Exception
-     */
     public static void main(String[] args) throws Exception {
-        String re2 = "a\\&c"; // 对应的正则是a\&c
-        System.out.println("a&c".matches(re2));
-        System.out.println("a-c".matches(re2));
-        System.out.println("a&c".matches(re2));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String input = null;
+        StringBuffer sb = new StringBuffer();
+
+        while ((input = bf.readLine()) != null && !input.equals("")) {
+            System.out.println(input.length());
+            if (input.length() < 8 ) {
+                sb.append("NG");
+                continue;
+            }
+
+            int count = 0;
+            if (input.matches(".?\\d.?")) {
+                count++;
+            }
+            if (input.matches(".?[a-z].?")) {
+                count++;
+            }
+            if (input.matches(".?[A-Z].?")) {
+                count++;
+            }
+            if (input.matches(".?\\W.?")) {
+                count++;
+            }
+            if (count > 2) {
+                sb.append("OK");
+                continue;
+            }
+            sb.append("NG");
+        }
+        System.out.println(sb.toString());
     }
 
 }
