@@ -86,3 +86,10 @@ HashMap的用法，getOrDefault(ch, 0)找不到就返回第二个参数的值
 (48 + (code - 48) % 10)
 (97 + (code - 65) % 26)
 (65 + (code - 97) % 26)
+
+### HJ31 单词倒排
+用toString方法可以将StringBuilder转化为String
+Collections.reverse(output) 可以让ArrayList实例倒序
+正则表达式表达字母[A-Za-z]
+str.split("[^A-Za-z]");
+到底什么时候能直接用正则表达式？
