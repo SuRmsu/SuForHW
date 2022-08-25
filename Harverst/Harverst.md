@@ -93,3 +93,7 @@ Collections.reverse(output) 可以让ArrayList实例倒序
 正则表达式表达字母[A-Za-z]
 str.split("[^A-Za-z]");
 到底什么时候能直接用正则表达式？
+
+### HJ41 称砝码
+基本思想是用HashSet存储结果和去重
+至于输入的方式使用Scanner类调用nextInt方法，能直接接受数值

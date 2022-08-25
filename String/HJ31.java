@@ -42,6 +42,7 @@ public class HJ31 {
         return false;
     }
 
+
     /*
         String[] words = str.split("[^A-Za-z]");
         StringBuilder result = new StringBuilder();
