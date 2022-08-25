@@ -102,3 +102,16 @@ str.split("[^A-Za-z]");
 难得写了一次最优解法，使用一个数组存储出现次数即可
 Arrays.sort(record);
 数组**全部填充**：Arrays.fill(record, 0);
+
+### HJ50 四则运算 未能解决
+通过入栈出栈能解决括号的识别问题。
+如何计算呢？
+
+### HJ73 计算日期到天数转换
+常规方法计算，要注意每四年为一个闰年，但是整百年，需要满足每400年为一个闰年
+也可以直接调用Calendar类c1.set(y, m-1, d);c1.get(Calendar.DAY_OF_YEAR);
+[Calendar类](https://blog.csdn.net/lfsf802/article/details/50616263)
+
+### HJ84 统计大写字母个数
+简单暴力，也可以用正则表达式将其他字符替换为空
+
