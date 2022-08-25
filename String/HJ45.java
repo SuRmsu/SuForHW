@@ -1,16 +1,15 @@
-
+package String;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
-    public static void main(String[] args) throws Exception {
+public class HJ45 {
+    /**
+     * 难得写了一次最优解法，使用一个数组存储出现次数即可
+     * @throws Exception
+     */
+    public void mySolution() throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int times = Integer.parseInt(br.readLine());
         String str = null;
@@ -37,6 +36,3 @@ public class TempTestClass {
 
     }
 }
-
-
-

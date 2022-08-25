@@ -97,3 +97,8 @@ str.split("[^A-Za-z]");
 ### HJ41 称砝码
 基本思想是用HashSet存储结果和去重
 至于输入的方式使用Scanner类调用nextInt方法，能直接接受数值
+
+### HJ45 名字的漂亮度
+难得写了一次最优解法，使用一个数组存储出现次数即可
+Arrays.sort(record);
+数组**全部填充**：Arrays.fill(record, 0);
