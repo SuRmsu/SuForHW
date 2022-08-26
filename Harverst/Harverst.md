@@ -115,3 +115,12 @@ Arrays.sort(record);
 ### HJ84 统计大写字母个数
 简单暴力，也可以用正则表达式将其他字符替换为空
 
+### HJ3 明明的随机数
+利用HashSet简单实现。storage.toArray(output)，output得是声明了长度的基本引用类型数组。
+[TreeSet类](https://www.yiibai.com/java/java_treeset_class.html) 自然升序的set，有很多导航的api
+[Iterator类迭代器](https://www.runoob.com/java/java-iterator.html) next,haveNext和remove三个方法 用于ArrayList和HashSet等集合
+Iterator<String> it = sites.iterator();
+
+
+
+
