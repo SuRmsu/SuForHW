@@ -121,6 +121,9 @@ Arrays.sort(record);
 [Iterator类迭代器](https://www.runoob.com/java/java-iterator.html) next,haveNext和remove三个方法 用于ArrayList和HashSet等集合
 Iterator<String> it = sites.iterator();
 
+### HJ7 
+强制转型double转int会直接丢弃小数点后面的
+
 
 
 
