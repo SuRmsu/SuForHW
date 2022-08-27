@@ -12,6 +12,7 @@ import static java.lang.Math.pow;
 public class TempTestClass {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner scanner = new Scanner(System.in);
         int times = Integer.parseInt(br.readLine());
         String str = null;
         int[] record = new int[26];

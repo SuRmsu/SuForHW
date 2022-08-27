@@ -121,8 +121,13 @@ Arrays.sort(record);
 [Iterator类迭代器](https://www.runoob.com/java/java-iterator.html) next,haveNext和remove三个方法 用于ArrayList和HashSet等集合
 Iterator<String> it = sites.iterator();
 
-### HJ7 
+### HJ7 取近似值
 强制转型double转int会直接丢弃小数点后面的
+
+### HJ8 合并表记录
+HashMap结构能按照key升序来存储数据
+
+
 
 
 
