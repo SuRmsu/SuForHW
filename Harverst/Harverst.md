@@ -123,12 +123,12 @@ Iterator<String> it = sites.iterator();
 
 ### HJ7 取近似值
 强制转型double转int会直接丢弃小数点后面的
-
 ### HJ8 合并表记录
 HashMap结构能按照key升序来存储数据
-
 ### HJ9 提取不重复的整数
 使用LinkedHashMap结构快速去重和顺序输出。
+### HJ12 字符串反转
+
 
 
 
