@@ -127,6 +127,9 @@ Iterator<String> it = sites.iterator();
 ### HJ8 合并表记录
 HashMap结构能按照key升序来存储数据
 
+### HJ9 提取不重复的整数
+使用LinkedHashMap结构快速去重和顺序输出。
+
 
 
 
