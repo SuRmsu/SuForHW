@@ -148,6 +148,8 @@ Character类方法isLetter();isDigit();isSpaceChar();
 [Character类](https://www.runoob.com/java/java-character.html)
 line.replaceAll("[A-Z]+|[a-z]+",""); **+**表示至少一个
 
+### HJ46 截取字符串
+
 
 
 
