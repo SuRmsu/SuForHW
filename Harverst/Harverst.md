@@ -124,7 +124,7 @@ Iterator<String> it = sites.iterator();
 ### HJ7 取近似值
 强制转型double转int会直接丢弃小数点后面的
 ### HJ8 合并表记录
-HashMap结构能按照key升序来存储数据
+TreeHashMap结构能按照key升序来存储数据
 ### HJ9 提取不重复的整数
 使用LinkedHashMap结构快速去重和顺序输出。
 ### HJ12 字符串反转
@@ -149,8 +149,10 @@ Character类方法isLetter();isDigit();isSpaceChar();
 line.replaceAll("[A-Z]+|[a-z]+",""); **+**表示至少一个
 
 ### HJ46 截取字符串
+### HJ59 找出字符串中第一个只出现一次的字符
 
-
-
-
+### HJ65 查找两个字符串a,b中的最长公共子串
+TreeMap需要倒序排序时，可以使用new TreeMap<>(Comparator.reverseOrder());
+TreeMap需要按照特定顺序排序时，使用new Comparator<String>() 并重写compare方法，见HJ65
+比较器
 
