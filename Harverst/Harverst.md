@@ -143,8 +143,10 @@ Integer类有两个方法，toBinaryString方法转化为二进制数字符串�
 
 ### HJ34 图片整理
 
-
-
+### HJ40 统计字符
+Character类方法isLetter();isDigit();isSpaceChar();
+[Character类](https://www.runoob.com/java/java-character.html)
+line.replaceAll("[A-Z]+|[a-z]+",""); **+**表示至少一个
 
 
 
