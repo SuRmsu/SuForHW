@@ -149,7 +149,7 @@ Character类方法isLetter();isDigit();isSpaceChar();
 line.replaceAll("[A-Z]+|[a-z]+",""); **+**表示至少一个
 
 ### HJ46 截取字符串
-
+### HJ59 找出字符串中第一个只出现一次的字符
 
 
 
