@@ -156,3 +156,9 @@ TreeMap需要倒序排序时，可以使用new TreeMap<>(Comparator.reverseOrder
 TreeMap需要按照特定顺序排序时，使用new Comparator<String>() 并重写compare方法，见HJ65
 比较器
 
+### HJ92 在字符串中找出连续最长的数字串
+需要详细了解dp(动态优化)算法到底如何使用
+可以存位置，也可以存字符
+
+
+
