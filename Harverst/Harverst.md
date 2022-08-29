@@ -155,10 +155,26 @@ line.replaceAll("[A-Z]+|[a-z]+",""); **+**表示至少一个
 TreeMap需要倒序排序时，可以使用new TreeMap<>(Comparator.reverseOrder());
 TreeMap需要按照特定顺序排序时，使用new Comparator<String>() 并重写compare方法，见HJ65
 比较器
+也可以使用dp方法
 
 ### HJ92 在字符串中找出连续最长的数字串
 需要详细了解dp(动态优化)算法到底如何使用
 可以存位置，也可以存字符
 
+### HJ26 字符串排序
+二维的ArrayList
+> ArrayList<ArrayList<character>> cutPlan = new ArrayList<>(); 
+> c.get(i)).get(j);
 
+Arrays.sort()源码也还是使用for循环赋值
+> for (int i = 0; i <= n; i++) {
+Arrays.fill(f[i], Integer.MAX_VALUE);
+}
+
+忽略字符大小写排序
+> letters.sort(new Comparator<Character>() {
+public int compare(Character o1, Character o2) {
+return Character.toLowerCase(o1) - Character.toLowerCase(o2);
+}
+})
 
