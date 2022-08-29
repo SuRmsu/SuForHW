@@ -1,14 +1,15 @@
-
+package String;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.LinkedHashSet;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
-    public static void main(String[] args) throws Exception {
+public class HJ36 {
+    /**
+     * 计算密钥，替换，还能优化
+     * @throws Exception
+     */
+    public void mySolution() throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String key = br.readLine();
         String input = br.readLine();
@@ -30,6 +31,3 @@ public class TempTestClass {
 
     }
 }
-
-
-
