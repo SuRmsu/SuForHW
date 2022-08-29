@@ -181,3 +181,6 @@ return Character.toLowerCase(o1) - Character.toLowerCase(o2);
 ### HJ36 字符串加密
 Character[] password = storage.toArray(new Character[0]);可以将LinkedHashSet转化为数组
 ArrayList<Character> list = new ArrayList<>(set);这个可以将LinkedHashSet转化成ArrayList
+
+### HJ62 查找输入整数二进制中1的个数
+使用while ( null != temp )可以判断Scanner类有没有下一个输入
