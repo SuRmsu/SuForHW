@@ -203,3 +203,9 @@ StringBuilder可以调用reverse()方法使字符串倒序
 [StringBuilder](https://www.runoob.com/java/java-stringbuffer.html)
 StringBuilder可以直接使用String构建，也可以直接当作String输出
 > StringBuilder sb = new StringBuilder(br.readLine());
+
+### HJ102 字符统计（key和value都需要排序）
+使用TreeMap能把key按照ASCII码升序排序
+需要对values进行遍历找到最大值max
+循环max次，再循环遍历keySet，进行二次排序
+
