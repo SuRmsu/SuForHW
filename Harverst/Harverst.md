@@ -190,3 +190,7 @@ ArrayList<Character> list = new ArrayList<>(set);这个可以将LinkedHashSet转
 > 第一步：定义数组元素的含义
 > 第二步：定义数组元素之间的关系式
 > 第三步：找出初始值
+
+### HJ97 记负均正
+暴力算法，注意int / int是没有小数的
+Math.round(sum*10.0/positive)/10.0);Math.round函数为四舍五入，可以利用*10.0之后再/10.0保留一位小数
