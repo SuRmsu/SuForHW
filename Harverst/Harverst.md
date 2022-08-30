@@ -197,3 +197,9 @@ Math.round(sum*10.0/positive)/10.0);Math.round函数为四舍五入，可以利�
 
 ### HJ94 记票统计
 无
+
+### HJ106 字符逆序
+StringBuilder可以调用reverse()方法使字符串倒序
+[StringBuilder](https://www.runoob.com/java/java-stringbuffer.html)
+StringBuilder可以直接使用String构建，也可以直接当作String输出
+> StringBuilder sb = new StringBuilder(br.readLine());
