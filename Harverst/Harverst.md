@@ -184,3 +184,9 @@ ArrayList<Character> list = new ArrayList<>(set);这个可以将LinkedHashSet转
 
 ### HJ62 查找输入整数二进制中1的个数
 使用while ( null != temp )可以判断Scanner类有没有下一个输入
+
+### HJ91 走方格的方案数
+对dp(动态优化)算法开始理解[dp算法理解](https://zhuanlan.zhihu.com/p/91582909)
+> 第一步：定义数组元素的含义
+> 第二步：定义数组元素之间的关系式
+> 第三步：找出初始值
