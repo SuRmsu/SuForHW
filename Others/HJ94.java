@@ -1,14 +1,15 @@
-
+package Others;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.util.LinkedHashMap;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
-    public static void main(String[] args) throws Exception {
+public class HJ94 {
+    /**
+     * 使用LinkedHashMap
+     * @throws Exception
+     */
+    public void mySolution() throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         LinkedHashMap<String,Integer> storage = new LinkedHashMap<>();
         br.readLine();
@@ -29,9 +30,6 @@ public class TempTestClass {
         for (String temp : storage.keySet() ){
             System.out.println(temp+ " : " + storage.get(temp));
         }
-        System.out.println("Invaild : " + count);
+        System.out.println("Invalid : " + count);
     }
 }
-
-
-

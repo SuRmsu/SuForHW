@@ -33,11 +33,11 @@ String是引用类型，不可变，其内部是char[]数组
 > %x 显示十六进制整数
 > %f 显示浮点数  %.2f表示显示两位小数
 
-**valueOf**：类型转换为字符串
+**valueOf(char[])**：类型转换为字符串
 **Integer.parseInt/Boolean.parseBoolean**:将字符串转化为其他类型
 
 **toCharArray**：String转化为char数组
-**String(char[])**：char数组转化为String，不会互相影响
+**new String(char[])**：char数组转化为String，不会互相影响 
 
 编码转化内容：暂时不考虑
 
