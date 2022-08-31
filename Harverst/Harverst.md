@@ -216,3 +216,15 @@ StringBuilder可以直接使用String构建，也可以直接当作String输出
 >while(i,r) {i++,r--;}
 
 可以使用动态规划，Boolean dp[i][j] 表示从第i个字符到第j个字符是回文子串
+
+### HJ35 蛇形矩阵
+**等差累加公式**：(首项+末项)*项数/2
+[二维数组](http://c.biancheng.net/view/916.html)
+对二维数组的第一维度单独赋值，依次对对角线赋值
+对二维数组的输出，遍历第一维度，输出每个第一维度的第二个维度
+```
+            for (int i = 0; i < n; i++) {result[i] = new int[n - i];//数组第i行有n-i个元素
+                for (int j = 0; j < i + 1; j++) { result[i - j][j] = t; }}   //对第i个对角线赋值     
+            for (int[] a : result) {
+                for (int a1 : a)System.out.print(a1);}
+```
