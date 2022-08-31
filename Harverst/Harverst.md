@@ -228,3 +228,5 @@ StringBuilder可以直接使用String构建，也可以直接当作String输出
             for (int[] a : result) {
                 for (int a1 : a)System.out.print(a1);}
 ```
+
+### HJ100 等差数列
