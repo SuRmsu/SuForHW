@@ -245,3 +245,11 @@ StringBuilder可以直接使用String构建，也可以直接当作String输出
 ### HJ101 输入整型数组和排序标识，对其元素按照升序或降序进行排序
 treeSet转化为数组
 Integer[] temp = allSet.toArray(new Integer[] {});
+
+### HJ37 统计每个月兔子的总数
+dp算法，找规律
+>       dp[0] = 1;
+        dp[1] = 1;
+        dp[2] = dp[1] + dp[0];
+        dp[3] = dp[2] + dp[1];
+        dp[4] = dp[3] + dp[2];
