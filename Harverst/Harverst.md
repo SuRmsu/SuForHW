@@ -241,3 +241,7 @@ StringBuilder可以直接使用String构建，也可以直接当作String输出
 暴力算法，双循环
 双指针算法（待实现）
 动态规划算法（待实现）
+
+### HJ101 输入整型数组和排序标识，对其元素按照升序或降序进行排序
+treeSet转化为数组
+Integer[] temp = allSet.toArray(new Integer[] {});
