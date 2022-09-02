@@ -257,3 +257,7 @@ dp算法，找规律
 ### HJ30 字符串合并处理
 Integer.parseInt(String,radix); radix参数指示转化为特定进制的整数
 String hexString = Integer.toHexString(n).toUpperCase();//n为int，可转成16进制字符串大写
+
+### HJ58 输入n个整数，输出其中最小的k个
+典型的top k算法
+性能上：堆 > 选择 > 冒泡 > api排序 仅实现api排序
