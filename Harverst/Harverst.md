@@ -263,3 +263,6 @@ String hexString = Integer.toHexString(n).toUpperCase();//n为int，可转成16�
 性能上：堆 > 选择 > 冒泡 > api排序 仅实现api排序
 
 ### HJ85 最长回文子串 参考HJ32
+### HJ108 求最小公倍数
+暴力算法，相乘为最大，最小为累加
+递归，累加自身
