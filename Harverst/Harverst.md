@@ -253,3 +253,7 @@ dp算法，找规律
         dp[2] = dp[1] + dp[0];
         dp[3] = dp[2] + dp[1];
         dp[4] = dp[3] + dp[2];
+
+### HJ30 字符串合并处理
+Integer.parseInt(String,radix); radix参数指示转化为特定进制的整数
+String hexString = Integer.toHexString(n).toUpperCase();//n为int，可转成16进制字符串大写
