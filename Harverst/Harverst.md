@@ -261,3 +261,5 @@ String hexString = Integer.toHexString(n).toUpperCase();//n为int，可转成16�
 ### HJ58 输入n个整数，输出其中最小的k个
 典型的top k算法
 性能上：堆 > 选择 > 冒泡 > api排序 仅实现api排序
+
+### HJ85 最长回文子串 参考HJ32
