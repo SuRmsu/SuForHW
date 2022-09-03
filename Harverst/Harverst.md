@@ -273,3 +273,10 @@ String hexString = Integer.toHexString(n).toUpperCase();//n为int，可转成16�
 平方后相减再取余10的n次方为0
 获取一个整数是**几位数的方法**：
 > nums = (int) Math.log10(i) + 1;
+
+### HJ33 整数与IP地址间的转换
+正则匹配中的特殊字符的转义匹配需要用双斜杠\\
+str.split("\\.");
+很酷的想法，增加8位二进制等于整体*256
+反过来减少8位二进制等于整体%256
+用substring(0, length - 1)来进行格式控制，避免使用if判断特殊情况

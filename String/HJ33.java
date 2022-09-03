@@ -1,14 +1,14 @@
-
+package String;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.*;
-import java.util.regex.Pattern;
 
-import static java.lang.Math.pow;
-
-public class TempTestClass {
-    public static void main(String[] args) throws Exception {
+public class HJ33 {
+    /**
+     * 普通的暴力算法，切割，循环
+     * @throws Exception
+     */
+    public void mySolution() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
         String[] input = str.split("\\.");
@@ -22,7 +22,7 @@ public class TempTestClass {
             }
             temp.append(input[i]);
         }
-        int count = 0;
+        long count = 0;
         for( int i = temp.length() - 1; i >= 0; i--){
             count += (temp.charAt(i) - '0') * Math.pow(2,temp.length() - 1 - i);
         }
@@ -46,9 +46,33 @@ public class TempTestClass {
             System.out.print(".");
             count = 0;
         }
+    }
 
+    /**
+     * 很酷的想法，增加8位二进制等于整体*256
+     * 反过来减少8位二进制等于整体%256
+     * @param str
+     * @return
+     */
+    public String convert(String str) {
+        // ipv4 -> int
+        if (str.contains(".")) {
+            String[] fields = str.split("\\.");
+            long result = 0;
+            for (int i = 0; i < 4; i++) {
+                result = result * 256 + Integer.parseInt(fields[i]);
+            }
+            return "" + result;
+        }
+        // int -> ipv4
+        else {
+            long ipv4 = Long.parseLong(str);
+            String result = "";
+            for (int i = 0; i < 4; i++) {
+                result = ipv4 % 256 + "." + result;
+                ipv4 /= 256;
+            }
+            return result.substring(0, result.length() - 1);
+        }
     }
 }
-
-
-
