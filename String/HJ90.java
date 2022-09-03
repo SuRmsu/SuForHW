@@ -37,4 +37,19 @@ public class HJ90 {
             System.out.print("NO");
         }
     }
+    /**
+     * best use try-catch
+     */
+    /*
+                        try {
+                        int i = Integer.parseInt(s1);
+                        if(i < 0 || i > 255){
+                            flag = false;
+                            break;
+                        }
+                    } catch (NumberFormatException err) {
+                        flag = false;
+                        break;
+                    }
+     */
 }

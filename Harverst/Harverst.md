@@ -308,3 +308,4 @@ str.split("\\.");
 ### HJ90 合法IP
 \d匹配数字，\D匹配非数字
 我不理解，为什么\D不会匹配到 + 号？
+可以使用try catch语句来处理格式异常 NumberFormatException
