@@ -314,3 +314,8 @@ str.split("\\.");
 脑筋急转弯，每有两个空瓶子直接和老板要一瓶，喝完正好还他
 
 ### HJ55 挑7
+
+### HJ27 查找兄弟单词
+使用List<String>队列来保存输入的字符串数组
+使用Arrays.sort来进行比较是否为字符串数组
+List<String> list = new ArrayList<>();
