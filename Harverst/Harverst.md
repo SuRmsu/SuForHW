@@ -217,6 +217,7 @@ StringBuilder可以直接使用String构建，也可以直接当作String输出
 
 可以使用动态规划，Boolean dp[i][j] 表示从第i个字符到第j个字符是回文子串
 
+
 ### HJ35 蛇形矩阵
 **等差累加公式**：(首项+末项)*项数/2
 [二维数组](http://c.biancheng.net/view/916.html)
@@ -319,3 +320,8 @@ str.split("\\.");
 使用List<String>队列来保存输入的字符串数组
 使用Arrays.sort来进行比较是否为字符串数组
 List<String> list = new ArrayList<>();
+
+### HJ25 数据分类处理
+TreeSet排序加去重，直接foreach遍历，注意String排序是依据第一个字符串
+每个循环找到对应输出字串
+> 休息了12天，一切都稳定下来了，HW，我来了
