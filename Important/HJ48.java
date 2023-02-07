@@ -22,8 +22,6 @@ public class HJ48 {
             while (it.hasNext()) {
                 System.out.print(it.next() + " ");
             }
-            System.out.println(linkedList);
-
         }
     }
 }
