@@ -384,3 +384,7 @@ xy yz xz  三层循环 x z y  2 3 2
 ## HJ48
 删除列表中的指定元素
 链表使用迭代器类iterator
+
+## HJ60
+查找一个偶数最接近的两个素数
+判断是否为素数: int i = 2; i <= Math.sqrt(input); i++
