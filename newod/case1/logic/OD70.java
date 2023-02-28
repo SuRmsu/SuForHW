@@ -33,6 +33,7 @@ public class OD70 {
             tempSum += i;
             max = Math.max(max,i);
         }
+
         if (tempSum <= total) {
             System.out.println(-1);
             return;
@@ -57,6 +58,14 @@ public class OD70 {
         if (flag) {
             totalMax = Math.max(totalMax,middle);
         }
+
+//        if (middle == max) {
+//            if (isValid(input,sum,max - 1)){
+//                totalMax = Math.max(totalMax, max - 1);
+//            }
+//            return;
+//        }
+        // 这一段要改成上面那样
         if (middle == min || middle == max) {
             return;
         }
