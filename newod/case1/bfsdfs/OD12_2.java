@@ -66,11 +66,13 @@ public class OD12_2 {
                 "104"
         };
         int k = 14;
+        // BFS 广度优先搜索
         for (int i = 0; i < k; i++) {
             //String数组转Integer数组
             Integer[] temp = Arrays.stream(input[i].split(" ")).map(a -> Integer.parseInt(a)).toArray(Integer[]::new);
             tempStorage[i] = temp;
         }
+
         storage[0] = tempStorage[0][0];
         int firstCount = 0;
         int sumCount = 1;
@@ -99,7 +101,7 @@ public class OD12_2 {
         }
         System.out.println(storage[tempSum + i]);
 
-
+        // DFS 深度优先搜索
 
 
     }
