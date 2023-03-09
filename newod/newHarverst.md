@@ -1191,7 +1191,7 @@ array[i][j] = -1代表i行j列是阻隔物。
 
 解法：简单的BFS 
 
-## OD9_2 垃圾短信识别
+## OD9_2 垃圾短信识别 NA
 题目描述
 大众对垃圾短信深恶痛绝，希望能对垃圾短信发送者进行识别，为此，很多软件增加了垃圾短信的识别机制。
 经分析，发现正常用户的短信通常具备交互性，而垃圾短信往往都是大量单向的短信，按照如下规则进行垃圾短信识别：
@@ -1212,9 +1212,18 @@ A发送的短信数 – A接收的短信数M > 10；
 输出该ID是否为垃圾短信发送者，并且按序列输出 L M 的值（由于 N 值不唯一，不需要输出）；
 输出均为字符串。
 
-解法： 待完善
+解法： 
 A发送给那些人短信和接受到那些人的短信，Map<Integer,List<Integer>>
 异常情况须考虑，待完善
+// send记录 tid发送短信给“哪些人”
+LinkedList<Integer> send = new LinkedList<>();
+// receive记录  “哪些人”发送短信给tid
+LinkedList<Integer> receive = new LinkedList<>();
+
+//sendCount记录 tid发送了“几次”（对象属性值）短信给某个人（对象属性）
+HashMap<Integer, Integer> sendCount = new HashMap<>();
+//receiveCount记录 某人（对象属性）发送了“几次”（对象属性值）短信给tid
+HashMap<Integer, Integer> receiveCount = new HashMap<>();
 
 ## OD22_2 计算快递主站点 并查集
 题目描述

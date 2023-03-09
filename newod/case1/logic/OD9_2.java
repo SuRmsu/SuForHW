@@ -1,6 +1,7 @@
 package newod.case1.logic;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 垃圾短信识别
@@ -25,9 +26,88 @@ import java.util.*;
  * 输出均为字符串。
  * 解法：
  * A发送给那些人短信和接受到那些人的短信，Map<Integer,List<Integer>>
- * 异常情况须考虑，待完善
+ *         // send记录 tid发送短信给“哪些人”
+ *         LinkedList<Integer> send = new LinkedList<>();
+ *         // receive记录  “哪些人”发送短信给tid
+ *         LinkedList<Integer> receive = new LinkedList<>();
+ *
+ *         // sendCount记录 tid发送了“几次”（对象属性值）短信给某个人（对象属性）
+ *         HashMap<Integer, Integer> sendCount = new HashMap<>();
+ *         // receiveCount记录 某人（对象属性）发送了“几次”（对象属性值）短信给tid
+ *         HashMap<Integer, Integer> receiveCount = new HashMap<>();
+ *
  */
 public class OD9_2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[][] arr = new int[n][2];
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = sc.nextInt();
+            arr[i][1] = sc.nextInt();
+        }
+
+        int id = sc.nextInt();
+
+        System.out.println(getResult(id, arr));
+    }
+
+    public static String getResult(int tid, int[][] arr) {
+        // send记录 tid发送短信给“哪些人”
+        LinkedList<Integer> send = new LinkedList<>();
+        // receive记录  “哪些人”发送短信给tid
+        LinkedList<Integer> receive = new LinkedList<>();
+
+        // sendCount记录 tid发送了“几次”（对象属性值）短信给某个人（对象属性）
+        HashMap<Integer, Integer> sendCount = new HashMap<>();
+        // receiveCount记录 某人（对象属性）发送了“几次”（对象属性值）短信给tid
+        HashMap<Integer, Integer> receiveCount = new HashMap<>();
+
+        for (int[] ele : arr) {
+            int sid = ele[0];
+            int rid = ele[1];
+
+            if (sid == tid) {
+                send.addLast(rid);
+                sendCount.put(rid, sendCount.getOrDefault(rid, 0) + 1);
+            }
+
+            if (rid == tid) {
+                receive.addLast(sid);
+                receiveCount.put(sid, receiveCount.getOrDefault(sid, 0) + 1);
+            }
+        }
+
+        HashSet<Integer> sendSet = new HashSet<>(send);
+        HashSet<Integer> receiveSet = new HashSet<>(receive);
+
+        // connect记录和tid有交互的id
+        List<Integer> connect = send.stream().filter(receiveSet::contains).collect(Collectors.toList());
+
+        int l = sendSet.size() - connect.size();
+        int m = send.size() - receive.size();
+
+        boolean isSpammers = l > 5 || m > 10;
+
+        // 如果已经通过l和m确定了tid是垃圾短信发送者，那就不需要再确认n了，否则还是需要确认n
+        if (!isSpammers) {
+            for (Integer id : connect) {
+                if (sendCount.getOrDefault(id, 0) - receiveCount.getOrDefault(id, 0) > 5) {
+                    // 一旦发现x,则可以判断，则确定tid是垃圾短信发送者，可提前结束循环
+                    isSpammers = true;
+                    break;
+                }
+            }
+        }
+
+        return isSpammers + " " + l + " " + m;
+    }
+
+
+
+    /*
     public static void main(String[] args) {
         int target = 2;
         int[][] inputs = {
@@ -48,6 +128,7 @@ public class OD9_2 {
                 {1, 15},
         };
         // A发送给那些人短信和接受到那些人的短信，Map<Integer,List<Integer>>
+        // 此处记录的是全局的，但没必要，针对A记录就可以了
         Map<Integer, ArrayList<Integer>> input = new HashMap<Integer, ArrayList<Integer>>();
         Map<Integer, ArrayList<Integer>> output = new HashMap<Integer, ArrayList<Integer>>();
 
@@ -104,4 +185,5 @@ public class OD9_2 {
 
 
     }
+     */
 }
