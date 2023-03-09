@@ -1,5 +1,8 @@
 package newod.case1.logic;
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 /**
  * 模拟商场优惠打折
  * 题目描述
@@ -29,94 +32,102 @@ package newod.case1.logic;
  *
  * 解法：
  * 无门槛券一定是最后用才划算，就只有四种情况，满折，折满，满无，折无
- * 还是屎山，待优化
+ * 三种情况每种都各自用一个函数来计算，再两两组合成最终结果
+ *
  */
 public class OD14 {
-    static double tempMin = Integer.MAX_VALUE;
-    static int usedMin = 0;
-
     public static void main(String[] args) {
-        int[] tickets = {3, 2, 5};
-        double[] men = {100, 200, 400};
+        Scanner sc = new Scanner(System.in);
 
-        for (double man : men) {
-            process(man, tickets[0], tickets[1], 1);
-            process(man, tickets[1], tickets[0], 2);
-            process(man, tickets[0], tickets[2], 3);
-            process(man, tickets[1], tickets[2], 4);
-            System.out.println(tempMin);
-            System.out.println(usedMin);
-            tempMin = Integer.MAX_VALUE;
-            usedMin = 0;
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int x = sc.nextInt();
+
+        int[] arr = new int[x];
+        for (int i = 0; i < x; i++) {
+            arr[i] = sc.nextInt();
         }
 
-
+        getResult(arr, m, n, k);
     }
 
-    public static void process(double money, int x, int y, int type) {
-        double a = 0;
-        double b = 0;
-        switch (type) {
-            case 1 -> {
-                a = 0.9;
-                b = 0.92;
-                if (money >= 100 && x > 0) {
-                    int used = (int) Math.min(money / 100, x);
-                    money -= used * 10;
-                }
-                if (y > 0) {
-                    tempMin = Math.min(tempMin, money * 0.92);
-                } else {
-                    tempMin = Math.min(tempMin, money);
-                }
-            }
-            case 2 -> {
-                a = 0.92;
-                b = 0.9;
+    public static void getResult(int[] arr, int m, int n, int k) {
+        for (int i = 0; i < arr.length; i++) {
+            Integer[][] ans = new Integer[4][2]; // 4的含义对应4种使用券的方式：MN,NM,MK,NK,  2的含义对应每种方式下：剩余总价，剩余券数量
+            int price = arr[i];
 
-                if (x > 0) {
-                    money = money * 0.92;
-                }
-                if (money >= 100 && y > 0) {
-                    int used = (int) Math.min(money / 100, y);
-                    money -= used * 10;
-                }
-                tempMin = Math.min(tempMin, money);
+            int[] resM = M(price, m); // 先满减
+            int[] resN = N(price, n); // 先打折
 
-            }
-            case 3 -> {
-                a = 0.9;
-                b = -5;
-                if (money >= 100 && x > 0) {
-                    int used = (int) Math.min(money / 100, x);
-                    money -= used * 10;
-                }
-                while (y > 0){
-                    if (money >= 5) {
-                        money -= 5;
-                        y--;
-                    }
-                }
-                tempMin = Math.min(tempMin,money);
+            // MN
+            int[] resMN_N = N(resM[0], n); // 满减后打折
+            ans[0] =
+                    new Integer[] {
+                            resMN_N[0], m + n - resM[1] - resMN_N[1]
+                    }; // resMN_N[0]是 “满减后打折” 的剩余总价， m + n - resM[1] - resMN_N[1] 是 该种用券方式的: 总券数 m+n， 剩余券数
+            // resM[1] + resMN_N[1], 因此使用掉的券数： m+n - (resM[1] + resMN_N[1])
 
-            }
-            case 4 -> {
-                a = 0.92;
-                b = -5;
-                if (x > 0) {
-                    money = money * 0.92;
-                }
-                while (y > 0){
-                    if (money >= 5) {
-                        money -= 5;
-                        y--;
-                    }
-                }
-                tempMin = Math.min(tempMin,money);
-            }
+            // NM
+            int[] resNM_M = M(resN[0], m); // 打折后满减
+            ans[1] = new Integer[] {resNM_M[0], n + m - resN[1] - resNM_M[1]};
+
+            // MK
+            int[] resMK_K = K(resM[0], k); // 满减后无门槛
+            ans[2] = new Integer[] {resMK_K[0], m + k - resM[1] - resMK_K[1]};
+
+            // NK
+            int[] resNK_K = K(resN[0], k); // 打折后无门槛
+            ans[3] = new Integer[] {resNK_K[0], n + k - resN[1] - resNK_K[1]};
+
+            Arrays.sort(
+                    ans,
+                    (a, b) ->
+                            a[0].equals(b[0])
+                                    ? a[1] - b[1]
+                                    : a[0] - b[0]); // 对ans进行排序，排序规则是：优先按剩余总价升序，如果剩余总价相同，则再按“使用掉的券数量”升序
+            System.out.println(ans[0][0] + " " + ans[0][1]);
         }
+    }
 
+    /**
+     * @param price 总价
+     * @param m 满减券数量
+     * @return 总价满减后结果，对应数组含义是 [用券后剩余总价， 剩余满减券数量]
+     */
+    public static int[] M(int price, int m) {
+        while (price >= 100 && m > 0) {
+            price -= price / 100 * 10; // 假设price=340，那么可以优惠 340/100 * 10 = 30元
+            m--;
+        }
+        return new int[] {price, m};
+    }
 
+    /**
+     * @param price 总价
+     * @param n 打折券数量
+     * @return 总价打折后结果，对应数组含义是 [用券后剩余总价， 剩余打折券数量]
+     */
+    public static int[] N(int price, int n) {
+        if (n >= 1) {
+            price = (int) Math.floor((price * 0.92));
+            n--;
+        }
+        return new int[] {price, n};
+    }
+
+    /**
+     * @param price 总价
+     * @param k 无门槛券数量
+     * @return 无门槛券用后结果，对应数组含义是 [用券后剩余总价， 剩余无门槛券数量]
+     */
+    public static int[] K(int price, int k) {
+        while (price > 0 && k > 0) {
+            price -= 5;
+            price = Math.max(price, 0); // 感谢m0_71826536提供的思路，当无门槛券过多时，是有可能导致优惠后总价低于0的情况的，此时我们应该避免总价小于0的情况
+            k--;
+        }
+        return new int[] {price, k};
     }
 
 
