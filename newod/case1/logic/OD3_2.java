@@ -1,5 +1,9 @@
 package newod.case1.logic;
 
+import java.util.Arrays;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+
 /**
  * 最大化控制资源成本
  * 题目描述
@@ -28,9 +32,13 @@ package newod.case1.logic;
  * 1 <= parallelism <= 100
  *
  * 解法：暴力
- * 可优化
+ * 优化：
+ * 本题并不是要求解最大区间重叠个数，而是要求解重叠区间的权重和。
+ * 因此，我们需要定义一个变量sum来记录重叠区间的权重和
+ * 当小顶堆弹出不重叠区间时，sum需要减去被弹出区间的权重，当我们向小顶堆压入重叠区间时，则sum需要加上被压入区间的权重。
  */
 public class OD3_2 {
+    /*
     public static void main(String[] args) {
         int[] storage = new int[50000];
         int[][] input = {
@@ -49,4 +57,56 @@ public class OD3_2 {
         System.out.println(max);
 
     }
+     */
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        int[][] ranges = new int[n][3];
+
+        for (int i = 0; i < n; i++) {
+            ranges[i][0] = sc.nextInt();
+            ranges[i][1] = sc.nextInt();
+            ranges[i][2] = sc.nextInt();
+        }
+
+        System.out.println(getResult(ranges));
+    }
+
+    public static int getResult(int[][] ranges) {
+        Arrays.sort(ranges, (a, b) -> a[0] - b[0]);
+
+        PriorityQueue<Integer[]> end = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+
+        int max = 0;
+        // sum用来记录当前重叠区间的最大值
+        int sum = 0;
+        for (int[] range : ranges) {
+            int s = range[0];
+            int e = range[1];
+            int p = range[2];
+
+            while (end.size() > 0) {
+                Integer[] top = end.peek();
+
+                if (top[0] <= s) {
+                    Integer[] poll = end.poll();
+                    sum -= poll[1];
+                } else {
+                    break;
+                }
+            }
+
+            end.offer(new Integer[] {e, p});
+            sum += p;
+
+            if (sum > max) {
+                max = sum;
+            }
+        }
+        return max;
+    }
+
 }
