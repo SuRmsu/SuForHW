@@ -68,6 +68,8 @@ import java.util.Scanner;
  *
  * 抛开最快的A，B士兵，剩余较慢的士兵是偶数个，因此最后较慢士兵会遗留0个士兵在本岸，但是此时无法找到dp状态转移关系，因此我们后退一步，即当较慢士兵会遗留2个士兵在本岸，即 0 ~ i - 2 的士兵已经全部过河（dp[i-2]代表0~i-2的士兵已经全部过河），因此我们需要让对岸最快的士兵A，即0号士兵送船回来，此时用时times[0]，然后 i - 1 号士兵和 i 号士兵划船过河，用时times[i]，然后对岸最快的B士兵，即1号士兵送船回来，用时times[1]，然后0号士兵和1号士兵再开船到对岸，用时times[1]。
  *
+ *            dp[i] = Math.min(dp[i - 1] + times[0] + getMax(times[0], times[i]),
+ *                     dp[i - 2] + times[0] + getMax(times[i - 1], times[i]) + times[1] + getMax(times[0], times[1]));
  */
 public class OD13_2 {
 
