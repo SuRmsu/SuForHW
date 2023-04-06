@@ -1,4 +1,4 @@
-package newod.case1.logic;
+package newod.case1.erfen;
 
 /**
  * 日志限流 二分法

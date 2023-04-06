@@ -1,4 +1,4 @@
-package newod.case1.logic;
+package newod.case1.youxianduilie;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;

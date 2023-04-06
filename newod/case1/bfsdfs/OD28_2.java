@@ -22,7 +22,8 @@ package newod.case1.bfsdfs;
  * <p>
  * 输出描述
  * 输出是否可以从家里出发到达公司，是则输出YES，不能则输出NO。
- * 解法： DFS 需要记录转弯的方法 待优化
+ * 解法： BFS 需要记录转弯的方法 待优化
+ * 也可以用DFS
  */
 public class OD28_2 {
     static boolean flag = false;
@@ -59,6 +60,7 @@ public class OD28_2 {
             return;
         }
         // 用switch代替也得这么多行，考虑有无优化的方法？
+        // 用DFS可进行优化
         if (turnC == 0) {
             process(storage, 1, i, j + 1, turn, breakBull);
             process(storage, 2, i + 1, j, turn, breakBull);

@@ -1,4 +1,4 @@
-package newod.case1.huisu;
+package newod.case1.tanxing;
 
 import java.util.HashMap;
 import java.util.Map;

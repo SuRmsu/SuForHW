@@ -23,7 +23,8 @@ package newod.case1.tanxing;
  * 输出商人在这段时间内的最大利润。
  * <p>
  * 解法：先贪心,后续考虑dp
- * 第一天买，第二天卖了再买，第三天再卖；和第一天买，到第三天卖利润是一样的。
+ * 第一天买，第二天卖了再买，第三天再卖；和第一天买，到第三天卖利润是一样的，所以ALL IN就完事了
+ * 注意要对输入的行数进行校验，挺离谱的。
  */
 public class OD34 {
     public static void main(String[] args) {

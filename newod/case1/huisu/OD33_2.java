@@ -67,14 +67,14 @@ public class OD33_2 {
             if (target != input[i * 3] * input[i * 3 + 1] * input[i * 3 + 2]) {
                 return false;
             }
-            ;
+
         }
         // 判断列是不是都相等
         for (int i = 0; i < 3; i++) {
             if (target != input[0 + i] * input[3 + i] * input[6 + i]) {
                 return false;
             }
-            ;
+
         }
         // 判断对角线是不是都相等
         if (target != input[0] * input[4] * input[8] || target != input[2] * input[4] * input[6]) {

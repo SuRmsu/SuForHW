@@ -79,12 +79,13 @@ public class OD1_2 {
             for (HashSet<Integer> p : path) {
                 if (p.contains(i)) continue outer;
             }
-
+            // 当前节点能加入，可能性+1
             count++;
 
             if (connect.containsKey(i)) {
                 //存了该点的全部的相邻节点
                 path.addLast(connect.get(i));
+                //这个count写在此处不是很好，count记录的是所有情况的总和，此处正好当作参数记作之前的和加上之后的现在的
                 count = dfs(connect, m, i + 1, count, path);
                 //移除了该点的全部相邻节点
                 path.removeLast();

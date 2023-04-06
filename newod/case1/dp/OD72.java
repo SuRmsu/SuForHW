@@ -1,4 +1,4 @@
-package newod.case1.huisu;
+package newod.case1.dp;
 
 import java.util.Arrays;
 
@@ -21,8 +21,14 @@ import java.util.Arrays;
  * 输出描述
  * 匹配后，各组对战的实力差值的总和。若没有队伍可以匹配，则输出-1。
  *
- * 解法：先排序，然后从左往右依次组队；然后从右往左依次组队，比较大小；
- * 写法可优化
+ * 解法：
+ * 先排序，然后动态规划：打家劫舍
+ * 因此，我们需要定义一个二维dp。
+ * dp[i][0] 记录： 0 ~ i 中，已选了几个实力差，即实力差数量
+ * dp[i][1] 记录： 0 ~ i 中，已选的实力差的和
+ * 我们需要首先保证dp[i][0]最大，即选与不选第 i 个实力差时，
+ * 选择能够使dp[i][0]最大的，如果选与不选对应的dp[i][0]相同，
+ * 则再选择能够使dp[i][1]最小的。
  */
 public class OD72 {
     public static void main(String[] args) {

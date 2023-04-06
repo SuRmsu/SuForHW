@@ -1,5 +1,8 @@
 package newod.case1.bfsdfs;
 
+import java.util.LinkedList;
+import java.util.Scanner;
+
 /**
  * 计算网络信号、信号强度
  * 题目描述
@@ -25,62 +28,77 @@ package newod.case1.bfsdfs;
  * 解法： 简单的BFS
  */
 public class OD10_2 {
-    public static int maxSignal = 0;
+    // 剪枝，当前目标位置的最大值
+    static int targetMax = 0;
+    static int signalX = 0;
+    static int signalY = 0;
+    static int targetX = 0;
+    static int targetY = 0;
 
     public static void main(String[] args) {
-        int n = 6;
-        int m = 5;
-        int[][] input = {
-                {0, 0, 0, -1, 0},
-                {0, 0, 0, 0, 0},
-                {0, 0, -1, 4, 0},
-                {0, 0, 0, 0, 0},
-                {0, 0, 0, 0, -1},
-                {0, 0, 0, 0, 0}
-        };
-        int signalX = 0;
-        int signalY = 0;
-        for (int i = 0; i < input.length; i++) {
-            for (int j = 0; j < input[i].length; j++) {
-                maxSignal = Math.max(maxSignal, input[i][j]);
-                if (maxSignal == input[i][j]) {
+
+
+
+        // 先获取输入
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+
+        // 信号源
+        int signal = 0;
+
+
+        int[][] storage = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int temp = sc.nextInt();
+                storage[i][j] = temp;
+                if (temp != 0 && temp != -1) {
+                    signal = temp;
                     signalX = i;
                     signalY = j;
                 }
             }
         }
-        int targetX = 1;
-        int targetY = 4;
-
-        process(input, maxSignal, signalX, signalY);
-
-        System.out.println(input[targetX][targetY]);
+        targetX = sc.nextInt();
+        targetY = sc.nextInt();
+        targetMax = storage[targetX][targetY];
+        process(storage, signal, signalX, signalY);
+        System.out.println(storage[targetX][targetY]);
     }
 
-    public static void process(int[][] input, int signal, int x, int y) {
-        // 如果当前值为-1，则直接返回;xy超过边界也是
-        if (x < 0 || y < 0 || x >= input.length || y >= input[0].length || input[x][y] == -1  ) {
-            return;
-        }
-        // 如果当前值为signal，上下左右都得去看看，可以省略，
-/*        else if (input[x][y] == maxSignal) {
-            process(input, signal - 1, x, y + 1);
-            process(input, signal - 1, x, y - 1);
-            process(input, signal - 1, x + 1, y);
-            process(input, signal - 1, x - 1, y);
-        }*/
-        else {
-            // 如果当前值不为0，那肯定被别人处理过了，如果自己的signal比较大，则需要处理；否则直接return;上面注释掉，下面加上=号，可能会超时
-            if (signal >= input[x][y]) {
-                input[x][y] = signal;
-                process(input, signal - 1, x, y + 1);
-                process(input, signal - 1, x, y - 1);
-                process(input, signal - 1, x + 1, y);
-                process(input, signal - 1, x - 1, y);
-            } else {
-                return;
+    public static void process(int[][] input, int Signal, int i, int j) {
+
+        // 设置一个队列用于存储下一个需要处理的节点
+        LinkedList<Integer[]> queue = new LinkedList<Integer[]>();
+        queue.add(new Integer[]{i, j});
+
+        while (queue.size() > 0) {
+            Integer[] tempPoint = queue.poll();
+            int tempSignal = input[tempPoint[0]][tempPoint[1]] - 1;
+
+            // 剪枝，信号小于0没必要往后了
+            if (tempSignal == 0) {
+                continue;
             }
+            int[][] ways = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+            for (int[] way : ways) {
+                int x = tempPoint[0] + way[0];
+                int y = tempPoint[1] + way[1];
+                if (x >= 0 && x < input.length && y >= 0 && y < input[0].length && input[x][y] == 0) {
+                    input[x][y] = tempSignal;
+                    queue.addLast(new Integer[]{x, y});
+                }
+                // 剪枝，找到目标位置值就直接跳出
+                if (x == targetX && y == targetY) {
+                    return;
+                }
+            }
+
+
         }
+
     }
 }
 

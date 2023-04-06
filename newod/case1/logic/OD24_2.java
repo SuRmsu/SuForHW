@@ -33,11 +33,12 @@ import java.util.Scanner;
  * 还需要用一个变量用来将单引号里面的空格删除
  * 每删除一个坐标，不仅关键字的坐标要减，空格下标也要减少//也可以用数组存储，然后用空串替换空格
  *
- *  可以用深拷贝的方法，重新创建一个存储关键字的索引
- *  然后比较要不要减少索引有原生的，减少用新建的
+ * 可倒序遍历
+ *
  *
  */
 public class OD24_2 {
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -46,9 +47,7 @@ public class OD24_2 {
 
         Integer[][] ranges =
                 Arrays.stream(sc.nextLine().split(","))
-                        .map(s -> Arrays.stream(s.split(" "))
-                                .map(Integer::parseInt)
-                                .toArray(Integer[]::new))
+                        .map(s -> Arrays.stream(s.split(" ")).map(Integer::parseInt).toArray(Integer[]::new))
                         .toArray(Integer[][]::new);
 
         getResult(str, ranges);
@@ -58,38 +57,34 @@ public class OD24_2 {
         boolean quotaStart = false;
         ArrayList<Integer> needDel = new ArrayList<>();
 
-        for (int i = 0; i < str.length(); i++) {
-            if (i > 0 && ' ' == str.charAt(i) && ' ' == str.charAt(i - 1) && !quotaStart) {
+        String[] sArr = str.split("");
+
+        for (int i = 0; i < sArr.length; i++) {
+            if (i > 0 && " ".equals(sArr[i]) && " ".equals(sArr[i - 1]) && !quotaStart) {
                 needDel.add(i);
             }
 
-            if ('\'' == str.charAt(i)) {
+            if ("'".equals(sArr[i])) {
                 quotaStart = !quotaStart;
             }
         }
 
-        char[] cArr = str.toCharArray();
-        Integer[][] ans = Arrays.stream(ranges).map(Integer[]::clone).toArray(Integer[][]::new);
-
-        for (Integer del : needDel) {
-            cArr[del] = '\u0000';
+        for (int j = needDel.size() - 1; j >= 0; j--) {
+            int del = needDel.get(j);
+            sArr[del] = "";
             for (int i = 0; i < ranges.length; i++) {
                 int start = ranges[i][0];
                 if (del < start) {
-                    ans[i][0]--;
-                    ans[i][1]--;
+                    ranges[i][0]--;
+                    ranges[i][1]--;
                 }
             }
         }
 
-        System.out.println(new String(cArr).replace("\u0000", ""));
-
         StringBuilder sb = new StringBuilder();
-        for (Integer[] an : ans) {
+        for (Integer[] an : ranges) {
             sb.append(Arrays.toString(an));
         }
         System.out.println(sb);
-
-
     }
 }

@@ -1,6 +1,7 @@
 package newod.case1.logic;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 端口合并
@@ -17,90 +18,79 @@ import java.util.*;
  *
  * 输出描述
  * 合并后的二维数组
- *
  * 解法：
- * 我们首先基于arr1，将arr1和它后面的arr2合并，如果可以合并，则先将arr1合并入arr2，再将arr1.length = 0 ，然后结束本轮，如果不可以合并，则接着分别和arr3、arr4、arr5合并。
- *
- * 然后基于arr2，将arr2和它后面的arr3合并，同上逻辑。
- *
- * 但是我们需要注意的是，如果第一轮时 arr1无法和其他端口组合并，那么arr1将保留，然后第二轮arr2和尝试和其他端口组合并，比如arr2和arr3可以合并，且合并后的arr3和arr1是可以合并的。
- *
- * 那么双重for的逻辑可以支持arr3再回头和arr1合并吗？答案是不可以的，因为外层for循环是不可逆的，因此我们必须再在双重for外面套一层循环。
- *
- * 我觉得使用while比较好，我们可以定义一个flag变量，初始为true，作为while的循环条件，当进入while循环后，立即将flag=false，然后进行上面双重for逻辑，只要有端口组发生合并，则将flag=true，如果双重for结束了，也没有端口组发生合并，那么就说明真的没有端口组可以合并了，因此flag保持为false，while结束。
- * 这里，我们可以先将两个尝试合并的端口组，先进行升序排序，然后一层循环即可统计出相同端口的对数
- *
+ * 主要难度在于：组外顺序保持输入顺序
+ * 这里我利用反序遍历的方式，
+ * 将后面的端口组并入前面的端口组，这样就可以避免组外顺序发生改变了。
  */
 public class OD20 {
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         int m = Integer.parseInt(sc.nextLine());
 
+        // M,N不在限定范围内，统一输出一组空数组[[]]
         if (m > 10 || m < 1) {
             System.out.println("[[]]");
             return;
         }
 
-        Integer[][] matrix = new Integer[m][];
+        ArrayList<TreeSet<Integer>> ports = new ArrayList<>();
         for (int i = 0; i < m; i++) {
-            matrix[i] =
-                    Arrays.stream(sc.nextLine().split(",")).map(Integer::parseInt).toArray(Integer[]::new);
+            List<Integer> tmp =
+                    Arrays.stream(sc.nextLine().split(","))
+                            .map(Integer::parseInt)
+                            .collect(Collectors.toList());
+
+            // M,N不在限定范围内，统一输出一组空数组[[]]
+            int n = tmp.size();
+            if (n < 1 || n > 100) {
+                System.out.println("[[]]");
+                return;
+            }
+
+            ports.add(new TreeSet<>(tmp));
         }
 
-        System.out.println(Arrays.deepToString(getResult(matrix)));
+        System.out.println(getResult(ports, m));
     }
 
-    public static Integer[][] getResult(Integer[][] matrix) {
-        boolean flag = true;
+    public static String getResult(ArrayList<TreeSet<Integer>> ports, int m) {
 
-        while (flag) {
-            flag = false;
-            for (int i = matrix.length - 1; i >= 1; i--) {
-                if (matrix[i] == null || matrix[i].length <= 1) continue;
+        outer:
+        while (true) {
+            for (int i = m - 1; i >= 0; i--) {
+                TreeSet<Integer> port1 = ports.get(i);
+                if (port1.size() == 0) continue;
+
                 for (int j = i - 1; j >= 0; j--) {
-                    if (matrix[j] == null || matrix[j].length <= 1) continue;
-                    if (canMerge(matrix[i], matrix[j])) {
-                        ArrayList<Integer> tmp = new ArrayList<>();
-                        Collections.addAll(tmp, matrix[i]);
-                        Collections.addAll(tmp, matrix[j]);
-                        matrix[j] = new HashSet<Integer>(tmp).stream().sorted().toArray(Integer[]::new);
-                        matrix[i] = null;
-                        flag = true;
-                        break;
+                    TreeSet<Integer> port2 = ports.get(j);
+                    if (port2.size() == 0) continue;
+
+                    if (hasTwoSamePort(port1, port2)) {
+                        port2.addAll(port1);
+                        port1.clear();
+                        continue outer;
                     }
                 }
             }
+            break;
         }
 
-        return Arrays.stream(matrix).filter(Objects::nonNull).toArray(Integer[][]::new);
+        return ports.stream().filter(port -> port.size() > 0).collect(Collectors.toList()).toString();
     }
 
-    public static boolean canMerge(Integer[] m, Integer[] n) {
-        // 从用例1输出的2,3,2来看，未合并的端口组是不能去重和排序的，因此这里需要浅克隆下，避免改变原数组顺序
-        m = m.clone();
-        n = n.clone();
-
-        Arrays.sort(m);
-        Arrays.sort(n);
-
-        int i = 0;
-        int j = 0;
+    // 判断两个区间是否可以合并
+    public static boolean hasTwoSamePort(TreeSet<Integer> port1, TreeSet<Integer> port2) {
         int count = 0;
-
-        while (i < m.length && j < n.length && count < 2) {
-            if (m[i].equals(n[j])) {
-                i++;
-                j++;
-                count++;
-            } else if (m[i] > n[j]) {
-                j++;
-            } else {
-                i++;
+        for (Integer val : port1) {
+            if (port2.contains(val)) {
+                if (++count >= 2) return true;
             }
         }
 
-        return count >= 2;
+        return false;
     }
 }

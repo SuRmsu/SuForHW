@@ -1,5 +1,8 @@
 package newod.case1.logic;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * 服务中心选址
  * 题目描述
@@ -22,8 +25,20 @@ package newod.case1.logic;
  *
  * 如何优化？
  * https://blog.csdn.net/qfc_128220/article/details/128808359
+ *
+ * 随着 服务中心位置 i 的变化，服务中心到各区域的距离之和 dis 呈现上图U型曲线。
+ *
+ * 即，一定存在一个 i ，其左边点 i-0.5 的，和其右边点 i+0.5 到各区域的距离和大于它。
+ * 因此，我想是否可以用二分法求解，即取min点和max点的中间点mid作为服务中心位置，：
+ *
+ * 如果 dis(mid - 0.5)  >= dis(mid)  && dis(mid+0.5) >= dis(mid)，则 mid 就是所求的点
+ * 如果 dis(mid - 0.5 ) > dis(mid) > dis(mid +0.5)，则说明当前 mid 点处于上图的下降区间，此时我们应该将mid作为新的min值，然后重新取min，max的中间点作为新mid
+ * 如果 dis(mid - 0.5 ) < dis(mid) < dis(mid +0.5)，则说明当前 mid 点处于上图的上升区间，此时我们应该将mid作为新的max值，然后重新取min，max的中间点作为新mid
+ *
+ * 找U型谷的最低点
  */
 public class OD75 {
+    /*
     public static void main(String[] args) {
         int n = 11;
         int[][] input = {
@@ -64,5 +79,67 @@ public class OD75 {
             }
         }
         return temp;
+    }
+     */
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+
+        double[][] positions = new double[n][2];
+        for (int i = 0; i < n; i++) {
+            positions[i][0] = sc.nextInt();
+            positions[i][1] = sc.nextInt();
+        }
+
+        System.out.println(getResult(n, positions));
+    }
+
+    public static double getResult(int n, double[][] positions) {
+        ArrayList<Double> tmp = new ArrayList<>();
+        for (double[] pos : positions) {
+            tmp.add(pos[0]);
+            tmp.add(pos[1]);
+        }
+        tmp.sort(Double::compareTo);
+
+        double min = tmp.get(0);
+        double max = tmp.get(tmp.size() - 1);
+
+        while (min < max) {
+            double mid = Math.ceil((min + max) / 2);
+
+            double midDis = getDistance(mid, positions);
+            double midLDis = getDistance(mid - 0.5, positions);
+            double midRDis = getDistance(mid + 0.5, positions);
+
+            if (midDis <= midLDis && midDis <= midRDis) {
+                return midDis;
+            }
+
+            if (midDis < midLDis) {
+                min = mid + 0.5;
+                continue;
+            }
+
+            if (midDis < midRDis) {
+                max = mid - 0.5;
+            }
+        }
+
+        return 0;
+    }
+
+    public static double getDistance(double t, double[][] positions) {
+        double dis = 0;
+        for (double[] pos : positions) {
+            double l = pos[0];
+            double r = pos[1];
+            if (r < t) dis += t - r;
+            else if (t < l) dis += l - t;
+        }
+        return dis;
     }
 }

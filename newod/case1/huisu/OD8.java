@@ -12,6 +12,8 @@ import java.util.*;
  *
  * 输出描述
  * 最小拆分数组和
+ *
+ * 解法：最好的情况肯定是每个元素自己为一组；不满足就组数减一再试试
  */
 public class OD8 {
     static List<List<Integer>> storage = new ArrayList<>();

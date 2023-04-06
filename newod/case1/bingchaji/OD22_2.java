@@ -1,4 +1,4 @@
-package newod.case1.logic;
+package newod.case1.bingchaji;
 
 /**
  * 题目描述
@@ -15,61 +15,64 @@ package newod.case1.logic;
  * <p>
  * 输出描述
  * 输出站点个数，表示至少需要多少个主站点。
+ *
+ * 解法：标准的并查集
  */
 
 public class OD22_2 {
     public static void main(String[] args) {
-        int [][] input = {
-                {1,1,0,0},
-                {1,1,0,0},
-                {0,0,1,0},
-                {0,0,0,1}
+        int[][] input = {
+                {1, 1, 0, 0},
+                {1, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}
         };
-        int n = 4 ;
+        int n = 4;
         UnisonFindSet unison = new UnisonFindSet(n);
         // 可以剪枝
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
-                if (input[i][j] == 1){
-                    unison.union(i,j);
+                if (input[i][j] == 1) {
+                    unison.union(i, j);
                 }
             }
         }
         System.out.println(unison.count);
     }
-}
 
-class UnisonFindSet {
-    int[] fa;
-    int count;
 
-    public UnisonFindSet(int n) {
-        this.count = n;
-        this.fa = new int[n];
-        for (int i = 0; i < n; i++) {
-            this.fa[i] = i;
-        }
-    }
+    static class UnisonFindSet {
+        int[] fa;
+        int count;
 
-    public int find(int x){
-        if(x == this.fa[x]){
-            return x;
-        } else {
-            this.fa[x] = this.find(this.fa[x]);
-            return this.fa[x];
-            // 优化成这句
-            // return (this.fa[x] = this.find(this.fa[x]));
-        }
-    }
-
-    public void union(int x, int y) {
-        int x_fa = this.find(x);
-        int y_fa = this.find(y);
-        if (x_fa != y_fa){
-            this.fa[y_fa] = x_fa;
-            this.count--;
+        public UnisonFindSet(int n) {
+            this.count = n;
+            this.fa = new int[n];
+            for (int i = 0; i < n; i++) {
+                this.fa[i] = i;
+            }
         }
 
-    }
+        public int find(int x) {
+            if (x == this.fa[x]) {
+                return x;
+            } else {
+                this.fa[x] = this.find(this.fa[x]);
+                return this.fa[x];
+                // 优化成这句
+                // return (this.fa[x] = this.find(this.fa[x]));
+            }
+        }
 
+        public void union(int x, int y) {
+            int x_fa = this.find(x);
+            int y_fa = this.find(y);
+            if (x_fa != y_fa) {
+                this.fa[y_fa] = x_fa;
+                this.count--;
+            }
+
+        }
+
+    }
 }

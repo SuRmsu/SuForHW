@@ -22,6 +22,7 @@ public class OD31 {
         // 买不起当前的，dp[i][j] = dp[i - 1][j]
         // 买得起当前的，买当前的：dp[i-1][j - table[i]] + 当前值 和 不买的取最大值dp[i - 1][j] 这是01背包
         // 完全背包：得先初始化买第一个物品的所有的钱的情况，然后先遍历物品，再遍历钱都可以
+        // 并且递推公式应该改为：dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - i] + table[i - 1]);
         int[][] dp = new int[table.length + 1][money + 1];
         // 初始化
         for (int i = 0; i <= table.length; i++) {
@@ -39,7 +40,7 @@ public class OD31 {
                 if (i > j) {
                     dp[i][j] = dp[i - 1][j];
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - i] + table[i - 1]);
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - i] + table[i - 1]);
                 }
             }
         }

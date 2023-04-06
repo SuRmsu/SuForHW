@@ -1,4 +1,4 @@
-package newod.case1.logic;
+package newod.case1.erfen;
 
 import java.util.ArrayList;
 

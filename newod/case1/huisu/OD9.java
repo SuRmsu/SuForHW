@@ -72,7 +72,6 @@ public class OD9 {
         if (temp != notInclude.length()){
             System.out.println(sb);
         }
-
     }
 
 }

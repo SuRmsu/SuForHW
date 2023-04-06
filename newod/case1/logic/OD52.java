@@ -44,6 +44,7 @@ import java.util.*;
  */
 public class OD52 {
 
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -74,15 +75,14 @@ public class OD52 {
             String act_device = clockRecord[3];
             String reg_device = clockRecord[4];
 
-            // 如果实际设备号和注册设备号一样，则统计到该员工名下
-            if (act_device.equals(reg_device)) {
-                employees.putIfAbsent(id, new ArrayList<>());
-                employees.get(id).add(clockRecord);
-            }
             // 实际设备号与注册设备号不一样,则认为打卡异常
-            else {
+            if (!act_device.equals(reg_device)) {
                 ans.add(i);
             }
+
+            // 统计该员工的打卡
+            employees.putIfAbsent(id, new ArrayList<>());
+            employees.get(id).add(clockRecord);
         }
 
         for (String id : employees.keySet()) {
@@ -117,12 +117,12 @@ public class OD52 {
         // 如果没有异常打卡记录，则返回null
         if (ans.size() == 0) return "null";
 
-        StringJoiner sj = new StringJoiner(";", "", "");
+        StringJoiner sj = new StringJoiner(";");
         ans.stream()
                 .map(i -> clockRecords[i])
                 .forEach(
                         sArr -> {
-                            StringJoiner sj1 = new StringJoiner(",", "", "");
+                            StringJoiner sj1 = new StringJoiner(",");
                             for (String s : sArr) {
                                 sj1.add(s);
                             }

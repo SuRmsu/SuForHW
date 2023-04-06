@@ -1,4 +1,4 @@
-package newod.case1.logic;
+package newod.case1.youxianduilie;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -29,7 +29,9 @@ import java.util.PriorityQueue;
  * 解法： 优先队列
  * 如果 任务时间 <= currentTime + 1 ，即在接下来的一个时间内，该任务是可以做的，直接添加就完事
  * 如果 任务时间 > currentTime + 1， 则判断值不值得用分数最小的来换当前的
- * 真 TM 蠢
+ *
+ * 解法：经典的有限队列问题，用小根堆，判断值不值得用当前的替换掉之前的任务
+ *
  */
 public class OD35_2 {
     public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package newod.case1.huisu;
 
+import java.util.Scanner;
+
 /**
  * ## OD19 对称美学
  * 题目描述
@@ -35,6 +37,7 @@ package newod.case1.huisu;
  * 第n个字串的前半部分等于第n-1个字串的相同位置取反 k <= 2^(n-2) ，则相当于 get(n-1, k) 的颜色取反
  */
 public class OD19 {
+    /*
     public static void main(String[] args) {
 //        int n = 1;
 //        double k = 0;
@@ -68,5 +71,47 @@ public class OD19 {
             return !process(n-1,  k);
         }
 
+    }
+
+     */
+
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int t = sc.nextInt();
+
+        long[][] arr = new long[t][2];
+        for (int i = 0; i < t; i++) {
+            arr[i][0] = sc.nextLong();
+            arr[i][1] = sc.nextLong();
+        }
+
+        getResult(arr);
+    }
+
+    public static void getResult(long[][] arr) {
+        for (long[] nk : arr) {
+            System.out.println(getNK(nk[0], nk[1]));
+        }
+    }
+
+    public static String getNK(long n, long k) {
+        if (n == 1) {
+            return "red";
+        }
+
+        if (n == 2) {
+            if (k == 0) return "blue";
+            else return "red";
+        }
+
+        long half = 1L << (n - 2);
+
+        if (k >= half) {
+            return getNK(n - 1, k - half);
+        } else {
+            return "red".equals(getNK(n - 1, k)) ? "blue" : "red";
+        }
     }
 }

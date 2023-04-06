@@ -1,6 +1,8 @@
 package newod.case1.bfsdfs;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 /**
  * 查找树中元素
@@ -41,8 +43,11 @@ import java.util.Arrays;
  * 上图中根据坐标(1,1)查询输出{23}，根据坐标(1,2)查询输出{}
  * <p>
  * 解法：两个一维数组分别存链表元素 和 每一层元素个数
+ *
+ * 最优：DFS，沿着根节点遍历，得到每层第一个节点，因此只用一个二维矩阵即可；第I层：第I层的所有节点
  */
 public class OD12_2 {
+    /*
     static Integer[] storage = new Integer[100];
     static Integer[][] tempStorage = new Integer[100][];
     static Integer[] lengths = new Integer[100];
@@ -104,5 +109,67 @@ public class OD12_2 {
         // DFS 深度优先搜索
 
 
+    }
+     */
+
+    static ArrayList<Integer[]> nodes;
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = Integer.parseInt(sc.nextLine());
+
+        nodes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            Integer[] node =
+                    Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).toArray(Integer[]::new);
+            nodes.add(node);
+        }
+
+        int tx = sc.nextInt();
+        int ty = sc.nextInt();
+
+        System.out.println(getResult(nodes, tx, ty));
+    }
+
+    public static String getResult(ArrayList<Integer[]> nodes, int tx, int ty) {
+        ArrayList<ArrayList<Integer>> matrix = new ArrayList<>();
+        dfs(matrix, nodes.get(0), 0);
+
+        if (tx < matrix.size() && ty < matrix.get(tx).size()) {
+            return "{" + matrix.get(tx).get(ty) + "}";
+        } else {
+            return "{}";
+        }
+    }
+
+    public static void dfs(ArrayList<ArrayList<Integer>> matrix, Integer[] node, Integer level) {
+        if (node == null) return;
+
+        int val = node[0];
+
+        if (level < matrix.size()) {
+            matrix.get(level).add(val);
+        } else {
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(val);
+            matrix.add(list);
+        }
+
+        // 将二叉树处理逻辑，改成多叉树
+        //    if (node.length > 1) {
+        //      int left = node[1];
+        //      dfs(matrix, nodes.get(left), level + 1);
+        //    }
+        //
+        //    if (node.length > 2) {
+        //      int right = node[2];
+        //      dfs(matrix, nodes.get(right), level + 1);
+        //    }
+
+        for (int i = 1; i < node.length; i++) {
+            int child = node[i];
+            dfs(matrix, nodes.get(child), level + 1);
+        }
     }
 }

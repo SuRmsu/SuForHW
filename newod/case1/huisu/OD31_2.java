@@ -31,7 +31,7 @@ public class OD31_2 {
         System.out.println(storage.size());
     }
     public static void process(int m,int min, int[] nums, int startIndex,int sum){
-        if ( sum <= m && sum >min){
+        if ( sum == m || (m - sum < min && m - sum > 0)){
             storage.add(new ArrayList<>(tempStorage));
             return;
         } else if ( sum > m) {

@@ -29,7 +29,7 @@ public class OD21 {
         };
         int n = 4 ;
         UnisonFindSet unison = new UnisonFindSet(n);
-        // 可以剪枝
+        // 可以剪枝，其实此处已经剪过了
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 if (input[i][j] == 1){
